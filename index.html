@@ -53,7 +53,7 @@
           <div class="field-stage">
             <div class="motion-hint">Move the distance slider</div>
 
-            <img class="magnet-img magnet-left" src="assets/bar-magnet-ns.svg" alt="Bar magnet with north pole on the left and south pole on the right">
+            <img id="leftMagnet" class="magnet-img magnet-left" src="assets/bar-magnet-ns.svg" alt="Bar magnet with north pole on the left and south pole on the right">
 
             <div class="force-zone">
               <div id="leftArrow" class="force-arrow leftward"><span>←</span></div>
@@ -63,9 +63,13 @@
 
             <img id="rightMagnet" class="magnet-img magnet-right" src="assets/bar-magnet-sn.svg" alt="Right bar magnet">
 
-            <img class="field-lines" src="assets/magnetic-field-lines.svg" alt="" aria-hidden="true">
+            <img id="fieldLines" class="field-lines" src="assets/magnetic-field-lines.svg" alt="" aria-hidden="true">
           </div>
 
+          <div class="force-meter" aria-hidden="true">
+            <span>Force</span>
+            <div class="meter-track"><div id="meterFill" class="meter-fill"></div></div>
+          </div>
           <div class="status-card">
             <div>
               <span class="status-label">Interaction</span>

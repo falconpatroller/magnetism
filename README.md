@@ -30,3 +30,7 @@ Example:
 ```
 
 No external libraries, fonts, APIs, images, or network resources are used.
+
+
+## Elastic animation update
+The first-page demonstration now uses a damped spring simulation. Magnets accelerate toward or away from their target positions, overshoot, rebound and settle. The effect scales with the selected distance so closer magnets respond more strongly. The challenge page also includes a short elastic preview animation when pole choices change.

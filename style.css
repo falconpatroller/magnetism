@@ -21,3 +21,68 @@ select{width:100%;border:1px solid var(--border);border-radius:8px;padding:8px 1
 .challenge-visual{display:grid;grid-template-rows:180px 1fr;gap:13px}.big-pair{display:flex;justify-content:center;align-items:center;gap:18px}.dynamic-magnet{display:flex;width:145px;height:66px;overflow:hidden;border-radius:8px;border:2px solid #344d61}.dynamic-magnet .pole{flex:1;display:grid;place-items:center;color:#fff;font-weight:bold}.interaction-symbol{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--border);display:grid;place-items:center;font-size:24px;font-weight:bold}
 .north{background:var(--north)}.south{background:var(--south)}.summary-box{padding:11px 14px}.summary-row{display:flex;justify-content:space-between;align-items:center;margin:7px 0}.pair-pill{display:inline-block;min-width:80px;text-align:center;padding:5px 8px;border-radius:20px;background:#e8f1f6;font-weight:bold}.summary-box p{font-size:12px;color:var(--muted);margin-top:10px}
 @media(max-width:650px){.app-shell{height:auto;min-height:600px;overflow:visible;grid-template-rows:auto auto auto}.page-grid,.challenge-layout,.quiz-layout{grid-template-columns:1fr}.quiz-layout>div:first-child{grid-row:auto}}
+
+
+/* Elastic motion enhancements */
+.field-stage {
+  isolation: isolate;
+}
+.magnet-img {
+  will-change: transform, filter;
+  transform-origin: center center;
+}
+.magnet-left,
+.magnet-right {
+  transition: none;
+}
+.magnet-img.force-active {
+  filter: drop-shadow(0 4px 6px rgba(23,50,77,.18));
+}
+.field-lines {
+  transition: opacity .12s linear, transform .12s linear;
+  transform-origin: center center;
+}
+.force-zone {
+  pointer-events: none;
+}
+.force-arrow,
+.attract-arrows {
+  will-change: transform, opacity;
+  text-shadow: 0 1px 0 #fff;
+}
+.force-meter {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 10px;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 8px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.meter-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #dfe8ee;
+  border: 1px solid #ccd8e0;
+}
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width .1s linear;
+}
+@keyframes forcePulse {
+  0%,100% { opacity:.85; }
+  50% { opacity:1; }
+}
+.force-zone.pulsing .force-arrow,
+.force-zone.pulsing .attract-arrows {
+  animation: forcePulse .48s ease-in-out infinite;
+}
