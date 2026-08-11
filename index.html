@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnetic Attraction & Repulsion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell" aria-label="Magnetic attraction and repulsion interactive">
+    <header class="topbar">
+      <div>
+        <h1>Magnetic Attraction &amp; Repulsion</h1>
+        <p>Explore what happens when magnetic poles come together.</p>
+      </div>
+      <div class="progress" aria-label="Activity progress">
+        <span class="step-dot active">1</span>
+        <span class="step-dot">2</span>
+        <span class="step-dot">3</span>
+      </div>
+    </header>
+
+    <section class="page active" data-page="0">
+      <div class="page-grid">
+        <div class="lesson-panel">
+          <span class="eyebrow">STEP 1 · EXPLORE</span>
+          <h2>What happens between two magnets?</h2>
+          <p>Choose which pole of the right-hand magnet faces the left-hand magnet, then move them closer together.</p>
+
+          <div class="rule-box">
+            <strong>Remember</strong>
+            <p><b>Unlike poles</b> (N–S) attract. <b>Like poles</b> (N–N or S–S) repel.</p>
+          </div>
+
+          <div class="control-group">
+            <label for="rightPole">Pole facing the left magnet</label>
+            <select id="rightPole">
+              <option value="S">South (S)</option>
+              <option value="N">North (N)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="distance">Distance between magnets</label>
+            <input id="distance" type="range" min="20" max="180" value="100">
+            <div class="range-labels"><span>Close</span><span>Far apart</span></div>
+          </div>
+
+          <div id="forceReadout" class="force-readout" aria-live="polite"></div>
+        </div>
+
+        <div class="demo-panel">
+          <div class="field-stage">
+            <div class="motion-hint">Move the distance slider</div>
+
+            <img class="magnet-img magnet-left" src="assets/bar-magnet-ns.svg" alt="Bar magnet with north pole on the left and south pole on the right">
+
+            <div class="force-zone">
+              <div id="leftArrow" class="force-arrow leftward"><span>←</span></div>
+              <div id="rightArrow" class="force-arrow rightward"><span>→</span></div>
+              <div id="attractArrows" class="attract-arrows"><span>→</span><span>←</span></div>
+            </div>
+
+            <img id="rightMagnet" class="magnet-img magnet-right" src="assets/bar-magnet-sn.svg" alt="Right bar magnet">
+
+            <img class="field-lines" src="assets/magnetic-field-lines.svg" alt="" aria-hidden="true">
+          </div>
+
+          <div class="status-card">
+            <div>
+              <span class="status-label">Interaction</span>
+              <strong id="interactionStatus">ATTRACTION</strong>
+            </div>
+            <p id="statusExplanation">The facing poles are different, so the magnets pull toward each other.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" data-page="1">
+      <div class="quiz-layout">
+        <div>
+          <span class="eyebrow">STEP 2 · PREDICT &amp; TEST</span>
+          <h2>Can you predict the force?</h2>
+          <p>Look at each pair of facing poles. Choose whether they will attract or repel, then check your answer.</p>
+          <div class="score-box"><span>Score</span><strong><span id="score">0</span> / 3</strong></div>
+        </div>
+
+        <div class="question-card" data-answer="repel">
+          <div class="mini-magnets">
+            <img src="assets/bar-magnet-sn.svg" alt="Magnet with south then north">
+            <img src="assets/bar-magnet-ns.svg" alt="Magnet with north then south">
+          </div>
+          <div class="question-bottom">
+            <span>N facing N</span>
+            <div class="choice-buttons">
+              <button type="button" data-choice="attract">Attract</button>
+              <button type="button" data-choice="repel">Repel</button>
+            </div>
+            <span class="feedback"></span>
+          </div>
+        </div>
+
+        <div class="question-card" data-answer="attract">
+          <div class="mini-magnets">
+            <img src="assets/bar-magnet-ns.svg" alt="Magnet with north then south">
+            <img src="assets/bar-magnet-ns.svg" alt="Magnet with north then south">
+          </div>
+          <div class="question-bottom">
+            <span>S facing N</span>
+            <div class="choice-buttons">
+              <button type="button" data-choice="attract">Attract</button>
+              <button type="button" data-choice="repel">Repel</button>
+            </div>
+            <span class="feedback"></span>
+          </div>
+        </div>
+
+        <div class="question-card" data-answer="repel">
+          <div class="mini-magnets">
+            <img src="assets/bar-magnet-ns.svg" alt="Magnet with north then south">
+            <img src="assets/bar-magnet-sn.svg" alt="Magnet with south then north">
+          </div>
+          <div class="question-bottom">
+            <span>S facing S</span>
+            <div class="choice-buttons">
+              <button type="button" data-choice="attract">Attract</button>
+              <button type="button" data-choice="repel">Repel</button>
+            </div>
+            <span class="feedback"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" data-page="2">
+      <div class="challenge-layout">
+        <div class="challenge-copy">
+          <span class="eyebrow">STEP 3 · CHALLENGE</span>
+          <h2>Build the correct magnetic interaction</h2>
+          <p id="challengeInstruction">Make the two magnets <b>repel</b>.</p>
+
+          <div class="control-group">
+            <label for="challengeLeft">Pole on left magnet facing inward</label>
+            <select id="challengeLeft">
+              <option value="N">North (N)</option>
+              <option value="S">South (S)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="challengeRight">Pole on right magnet facing inward</label>
+            <select id="challengeRight">
+              <option value="N">North (N)</option>
+              <option value="S">South (S)</option>
+            </select>
+          </div>
+
+          <button id="checkChallenge" type="button" class="primary">Check my setup</button>
+          <button id="newChallenge" type="button" class="secondary">New challenge</button>
+          <div id="challengeFeedback" class="challenge-feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="challenge-visual">
+          <div class="big-pair">
+            <div class="dynamic-magnet" id="challengeMagnetLeft">
+              <span class="pole" id="challengeLeftOuter">S</span>
+              <span class="pole" id="challengeLeftInner">N</span>
+            </div>
+            <div class="interaction-symbol" id="interactionSymbol">↔</div>
+            <div class="dynamic-magnet" id="challengeMagnetRight">
+              <span class="pole" id="challengeRightInner">N</span>
+              <span class="pole" id="challengeRightOuter">S</span>
+            </div>
+          </div>
+
+          <div class="summary-box">
+            <h3>Key idea</h3>
+            <div class="summary-row"><span class="pair-pill">N + S</span><strong>Attract</strong></div>
+            <div class="summary-row"><span class="pair-pill">N + N</span><strong>Repel</strong></div>
+            <div class="summary-row"><span class="pair-pill">S + S</span><strong>Repel</strong></div>
+            <p>Magnetic forces act at a distance. The force becomes stronger as magnets move closer together.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="nav-bar">
+      <button id="prevBtn" type="button" class="secondary" disabled>← Previous</button>
+      <span id="pageLabel">1 of 3</span>
+      <button id="nextBtn" type="button" class="primary">Next →</button>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
